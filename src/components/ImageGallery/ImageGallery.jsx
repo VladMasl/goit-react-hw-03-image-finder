@@ -21,7 +21,7 @@ class ImageGallery extends Component {
     this.setState({ data: [], totalHits: 0, page: 1 });
   };
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps, prevState) {
     const { page } = this.state;
     if (prevProps.searchName !== this.props.searchName) {
       this.reset();
@@ -32,7 +32,7 @@ class ImageGallery extends Component {
     if (prevState.page !== page) {
       this.setState({ status: 'pending' });
 
-      this.dataTestRequest();
+      this.moreDataRequest();
     }
 
     if (page > 1) {
@@ -40,7 +40,7 @@ class ImageGallery extends Component {
     }
   }
 
-  async dataTestRequest() {
+  async moreDataRequest() {
     const { page } = this.state;
     const { searchName } = this.props;
 
